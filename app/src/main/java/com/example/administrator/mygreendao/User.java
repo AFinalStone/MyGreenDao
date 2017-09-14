@@ -7,6 +7,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class User {
+    @Id
     private Long id;
     private String name;
     public String getName() {

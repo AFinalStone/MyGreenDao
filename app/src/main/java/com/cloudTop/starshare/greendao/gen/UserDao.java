@@ -15,7 +15,7 @@ import com.example.administrator.mygreendao.User;
 /** 
  * DAO for table "USER".
 */
-public class UserDao extends AbstractDao<User, Void> {
+public class UserDao extends AbstractDao<User, Long> {
 
     public static final String TABLENAME = "USER";
 
@@ -24,7 +24,7 @@ public class UserDao extends AbstractDao<User, Void> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", false, "ID");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Name = new Property(1, String.class, "name", false, "NAME");
     };
 
@@ -41,7 +41,7 @@ public class UserDao extends AbstractDao<User, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
-                "\"ID\" INTEGER," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"NAME\" TEXT);"); // 1: name
     }
 
@@ -82,8 +82,8 @@ public class UserDao extends AbstractDao<User, Void> {
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
@@ -102,14 +102,18 @@ public class UserDao extends AbstractDao<User, Void> {
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(User entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(User entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(User entity) {
-        return null;
+    public Long getKey(User entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     @Override

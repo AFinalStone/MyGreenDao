@@ -4,35 +4,40 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:onClick="onClick"
+    <Button
         android:id="@+id/add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:layout_margin="20dp"
         android:text="增" />
 
-    <TextView
-        android:onClick="onClick"
+    <Button
         android:id="@+id/delete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="删"
- />
-
-    <TextView
+        android:gravity="center"
+        android:layout_margin="20dp"
         android:onClick="onClick"
+        android:text="删" />
+
+    <Button
         android:id="@+id/change"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="改"
-/>
-
-    <TextView
+        android:layout_margin="20dp"
+        android:gravity="center"
         android:onClick="onClick"
+        android:text="改" />
+
+    <Button
         android:id="@+id/select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="查"
- />
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:text="查" />
 
 </LinearLayout>
