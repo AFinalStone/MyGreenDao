@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         userHashSet.add(new User(4L,"囚犯4号"));
         userHashSet.add(new User(5L,"囚犯5号"));
         userHashSet.add(new User(6L,"囚犯6号"));
+        userHashSet.add(new User(7L,"囚犯7号"));
     }
 
     public void onClick(View view) {
